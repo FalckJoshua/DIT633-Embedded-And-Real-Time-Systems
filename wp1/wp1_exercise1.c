@@ -21,13 +21,13 @@
 /**
  * This program waits for user input, should be between 1 - 5, and prints a unique sentence depending on the number.
  *
- * Work Packages 1: Exercise 1 - If-statements
+ * Work Packages 1: Exercise 1 - IF-STATEMENTS
  * DIT633 Development of embedded and Real-Time Systems
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
+ * Submission code: TODO
  **/
-
 int main(int argc, char *argv[]) {
     int input = 0;                                // Declare input variable
     while (input > 1 || input < 5) {              // Keep looping while input is between 1 - 5

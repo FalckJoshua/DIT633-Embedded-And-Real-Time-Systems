@@ -8,6 +8,16 @@ int SHIFTS;  // Number of shifts to encrypt the input with, given as an command 
 int charIsNumber(char* input);  // Returns 1 if input is a number, 0 otherwise
 void encrypt(char* input);      // Encrypts (each char shifted with 'SHIFTS') the inputted char array and prints it
 
+/**
+ * This program waits for user input, should be between 1 - 5, and prints a unique sentence depending on the number.
+ *
+ * Work Packages 1: Exercise 2 - ENCRYPTION
+ * DIT633 Development of embedded and Real-Time Systems
+ *
+ * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
+ * Group: 1
+ * Submission code: TODO
+ **/
 int main(int argc, char* argv[]) {
     // Check if an argument has been proviided
     if (argc != 2) {
@@ -54,7 +64,6 @@ int charIsNumber(char* input) {
 void encrypt(char* input) {
     // Loop through each character in the char array (input)
     while (*input != '\0') {
-
         // Store current character in variable
         char current_char = *input;
 
