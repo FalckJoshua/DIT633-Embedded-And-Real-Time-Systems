@@ -1,4 +1,5 @@
-#include <stdio.h>  //Used for printf()
+#include <stdio.h>   //Used for printf()
+#include <stdlib.h>  //Used for atoi()
 
 // Define sentence for input 1
 #define first "Hello\n"
@@ -16,7 +17,7 @@
 #define fifth "Hello World! (again)\n"
 
 // Define sentence for wrong input
-#define inputError "Error, number must be between 1-5 \n"
+#define inputError "Error, input must be a number between 1-5 \n"
 
 /**
  * This program waits for user input, should be between 1 - 5, and prints a unique sentence depending on the number.
@@ -33,6 +34,11 @@ int main(int argc, char *argv[]) {
     while (input > 1 || input < 5) {              // Keep looping while input is between 1 - 5
         printf("Enter a number between 1-5 \n");  // Print
         scanf("%d", &input);                      // Scan for input
+
+        if (atoi(argv[1]) != 0) {      // If input is 0, exit and return
+            printf("%s", inputError);  // Print error message
+            return 0;                  // Exit program
+        }                              // Else, continue (input is between 1 - 5
 
         // If  statements
         switch (input) {
@@ -51,8 +57,8 @@ int main(int argc, char *argv[]) {
             case 5:                        // If == 5
                 printf("%s", fifth);       // Print fifth
                 break;                     // Break -> exit switch / if statement
-                printf("%s", inputError);  // Print error message
             default:                       // Else, exit and return
+                printf("%s", inputError);  // Print error message
                 return 0;                  // Return success
         }
     }
