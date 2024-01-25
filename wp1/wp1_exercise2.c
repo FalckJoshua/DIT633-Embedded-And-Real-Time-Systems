@@ -16,7 +16,7 @@ void encrypt(char* input);      // Encrypts (each char shifted with 'SHIFTS') th
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 315775
  **/
 int main(int argc, char* argv[]) {
     // Check if an argument has been provided

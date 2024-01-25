@@ -14,7 +14,7 @@ void bin2hex(char *bin);       // Print binary as hex.
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 315775
  **/
 int main(int argc, char *argv[]) {
     if (argc > 1) {

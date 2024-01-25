@@ -30,7 +30,7 @@ int charIsNumber(char* input);  // Check if the given input is a number
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 315775
  **/
 int main(int argc, char* argv[]) {
     char input[255];                              // Declare input variable

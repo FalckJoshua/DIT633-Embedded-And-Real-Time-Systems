@@ -24,7 +24,7 @@ void draw_histogram(int *freq);
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 315775
  **/
 int main(int argc, char *argv[]) {
     int table[AMOUNT_OF_RANDOM_NUMBERS], n;  // Declare the 'table' array and the 'n' variable.

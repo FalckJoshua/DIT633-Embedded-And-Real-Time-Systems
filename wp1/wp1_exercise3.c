@@ -20,7 +20,7 @@ int charIsNumber(char *input);
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 315775
  **/
 int main(int argc, char *argv[]) {
     srand(time(0));                      // Initialize random number generator.

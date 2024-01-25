@@ -23,7 +23,7 @@ typedef unsigned long int bit32;  // 32-bit
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 315775
  **/
 int main(int argc, char *argv[]) {
     // Check if an argument has been provided
