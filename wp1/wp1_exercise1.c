@@ -1,6 +1,9 @@
 #include <stdio.h>   //Used for printf()
 #include <stdlib.h>  //Used for atoi()
 
+// Function declaration
+int charIsNumber(char* input);  // Check if the given input is a number
+
 // Define sentence for input 1
 #define first "Hello\n"
 
@@ -29,19 +32,21 @@
  * Group: 1
  * Submission code: TODO
  **/
-int main(int argc, char *argv[]) {
-    int input = 0;                                // Declare input variable
-    while (input > 1 || input < 5) {              // Keep looping while input is between 1 - 5
+int main(int argc, char* argv[]) {
+    char input[255];                              // Declare input variable
+    while (1 == 1) {                              // Keep looping while input is between 1 - 5
         printf("Enter a number between 1-5 \n");  // Print
-        scanf("%d", &input);                      // Scan for input
+        scanf("%s", input);                       // Scan for input
 
-        if (atoi(argv[1]) != 0) {      // If input is 0, exit and return
-            printf("%s", inputError);  // Print error message
-            return 0;                  // Exit program
-        }                              // Else, continue (input is between 1 - 5
+        if (charIsNumber(input) == 0) {  // Check if the provided input is a number
+            printf("%s", inputError);    // Print error message
+            return 0;
+        }
+
+        int number = atoi(input);  // Convert input to int
 
         // If  statements
-        switch (input) {
+        switch (number) {
             case 1:                        // If == 1
                 printf("%s", first);       // Print first
                 break;                     // Break -> exit switch / if statement
@@ -62,4 +67,18 @@ int main(int argc, char *argv[]) {
                 return 0;                  // Return success
         }
     }
+}
+
+// Function to check if char array (input, the given argument) is a number
+// Returns 1 (true) if input is a number, else, 0 (false)
+int charIsNumber(char* input) {
+    // Loop through each character in the char array (input)
+    while (*input != '\0') {
+        // Check if character is a number
+        if (*input < '0' || *input > '9') {
+            return 0;  // Return 0 (false)
+        }
+        input++;  // Increment loop (pointer to next address)
+    }
+    return 1;  // Return 1 (true)
 }
