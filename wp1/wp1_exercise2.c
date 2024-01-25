@@ -9,7 +9,7 @@ int charIsNumber(char* input);  // Returns 1 if input is a number, 0 otherwise
 void encrypt(char* input);      // Encrypts (each char shifted with 'SHIFTS') the inputted char array and prints it
 
 /**
- * This program waits for user input, should be between 1 - 5, and prints a unique sentence depending on the number.
+ * This program encrypts user input with a given number of shifts.
  *
  * Work Packages 1: Exercise 2 - ENCRYPTION
  * DIT633 Development of embedded and Real-Time Systems
@@ -19,7 +19,7 @@ void encrypt(char* input);      // Encrypts (each char shifted with 'SHIFTS') th
  * Submission code: TODO
  **/
 int main(int argc, char* argv[]) {
-    // Check if an argument has been proviided
+    // Check if an argument has been provided
     if (argc != 2) {
         printf("Please provide a number as an argument\n");
         return 0;  // End program
@@ -71,7 +71,7 @@ void encrypt(char* input) {
         if (current_char >= 'A' && current_char <= 'Z') {
             // Alphabet in ASCII starts at 65 (A) and ends at 90 (Z),
             // the '%' (modulo) operator is used to convert the input into a range of 0 - 25 (26 letters),
-            // aftewards 65 is added back to get the correct number represenation of the uppercase letter in ASCII.
+            // afterwards 65 is added back to get the correct number representation of the uppercase letter in ASCII.
             current_char = (current_char - 65 + SHIFTS) % 26 + 65;
             printf("%c", current_char);
         }
@@ -80,7 +80,7 @@ void encrypt(char* input) {
         else if (current_char >= 'a' && current_char <= 'z') {
             // Alphabet in ASCII starts at 97 (a) and ends at 122 (z),
             // the '%' (modulo) operator is used to convert the input into a range of 0 - 25 (26 letters),
-            // aftewards 97 is added back to get the correct number represenation of the lowercase letter in ASCII.
+            // afterwards 97 is added back to get the correct number representation of the lowercase letter in ASCII.
             current_char = (current_char - 97 + SHIFTS) % 26 + 97;
             printf("%c", current_char);
         }

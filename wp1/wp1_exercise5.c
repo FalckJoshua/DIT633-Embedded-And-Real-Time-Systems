@@ -2,8 +2,8 @@
 #include <stdlib.h>  // Used for rand()
 #include <time.h>    // Used for time(), to seed srand()
 
-#define MAXIMUM_VALUE 100            // Defines the maximum number of the values in the table
-#define AMOUNT_OF_RANDOM_NUMBERS 20  // Defines the maximum value of random numbers
+#define MAXIMUM_VALUE 10            // Defines the maximum number of the values in the table
+#define AMOUNT_OF_RANDOM_NUMBERS 5  // Defines the maximum value of random numbers
 
 // ------ Function declarations ----------
 // This function generates a set of random numbers
