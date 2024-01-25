@@ -1,5 +1,6 @@
 #include <stdio.h>   //Used for printf()
 #include <stdlib.h>  //Used for atoi()
+#include <string.h>  //Used for strcmp()
 
 // Function declarations
 int charIsNumber(char *input);
@@ -31,17 +32,15 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    // Check if argument is a number
-    if (charIsNumber(argv[1]) == 0) {
-        printf("ERROR: Argument is not a number. Use '-h' for help.\n");
+    // Check if argument is -h (help command)
+    if (strcmp(argv[1], "-h") == 0) {
+        printf("Provide a decimal number in the argument and it will be converted to its binary form. (Maximum 2^32-1)\n");
         return 0;
     }
 
-    // argv[1] is the first argument, if it is "-h", print help
-    // argv[1][0] is the first character in the first argument, i.e '-'
-    // argv[1][1] is the second character in the first argument, i.e 'h'
-    if (argv[1][0] == '-' && argv[1][1] == 'h') {
-        printf("Provide a decimal number in the argument and it will be converted to its binary form. (Maximum 2^32-1)\n");
+    // Check if argument is a number
+    if (charIsNumber(argv[1]) == 0) {
+        printf("ERROR: Argument is not a number. Use '-h' for help.\n");
         return 0;
     }
 

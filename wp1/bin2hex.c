@@ -19,8 +19,8 @@ void bin2hex(char *bin);       // Print binary as hex.
 int main(int argc, char *argv[]) {
     if (argc > 1) {
         // Check if argument is "-h".
-        if (argv[1][0] == '-' && argv[1][1] == 'h') {
-            printf("Usage: ./bin2hex.exe <binary<\n");
+        if (strcmp(argv[1], "-h") == 0) {
+            printf("Usage: ./bin2hex.exe <binary>\n");
 
             // End program.
             return 0;
