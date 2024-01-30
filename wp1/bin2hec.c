@@ -4,7 +4,7 @@
 
 // Function declarations
 int arg_is_binary(char *arg);  // If any argument is passed, check whether it is binary.
-void bin2hex(char *bin);       // Print binary as hex.
+void bin2hec(char *bin);       // Print binary as hex.
 
 /**
  * This program takes a binary number as an argument or pipeline and prints it as its hexadecimal representation.
@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         // Check if argument is "-h".
         if (strcmp(argv[1], "-h") == 0) {
-            printf("Usage: ./bin2hex.exe <binary>\n");
+            printf("Usage: ./bin2hec.exe <binary>\n");
 
             // End program.
             return 0;
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
         }
 
         // Pass argv[1] into function.
-        bin2hex(argv[1]);
+        bin2hec(argv[1]);
 
         // End program with success.
         return 0;
@@ -48,9 +48,9 @@ int main(int argc, char *argv[]) {
     // Read from stdin until NULL.
     while (fgets(buffer, sizeof(buffer), stdin) != NULL) {
         if (memcmp(buffer, BOM, 3) == 0) {  // For windows, ignore UTF-8 representation of BOM (Byte Order Mark)
-            bin2hex(buffer + 3);            // If input starts with the BOM, increment the pointer by 3.
+            bin2hec(buffer + 3);            // If input starts with the BOM, increment the pointer by 3.
         } else {                            // Else:
-            bin2hex(buffer);                // Just call the function with the full buffer.
+            bin2hec(buffer);                // Just call the function with the full buffer.
         }
     }
 
@@ -70,7 +70,7 @@ int arg_is_binary(char *arg) {             // Check if the argument is binary.
 }
 
 // Function to print binary as hexadecimal.
-void bin2hex(char *bin) {
+void bin2hec(char *bin) {
     // Convert binary to decimal
     long int decimal = strtol(bin, NULL, 2);
 
