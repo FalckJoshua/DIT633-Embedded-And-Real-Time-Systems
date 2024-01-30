@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
             printf("Error: Argument is not binary.\n");
 
             // End program.
-            return 0;
+            return 2;
         }
 
         // Pass argv[1] into function.

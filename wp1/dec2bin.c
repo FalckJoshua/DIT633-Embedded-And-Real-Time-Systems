@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     // Check if argument is -h (help command)
     if (strcmp(argv[1], "-h") == 0) {
         printf("Provide a decimal number in the argument and it will be converted to its binary form. (Maximum 2^32-1)\n");
-        return 2;
+        return 0;
     }
 
     // Check if argument is a number
