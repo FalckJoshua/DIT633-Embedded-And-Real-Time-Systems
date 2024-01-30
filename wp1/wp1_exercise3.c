@@ -30,8 +30,8 @@ int main(int argc, char *argv[]) {
     printf("Give us your best guess!\n");  // Print message
     char input[100];                       // Declare input variable
 
-    while (ACTUAL_NUMBER != GUESSED_NUMBER) {    // Loop until user guesses the number
-        scanf("%s", input);                      // Get user input
+    while (ACTUAL_NUMBER != GUESSED_NUMBER) {  // Loop until user guesses the number
+        scanf("%s", input);                    // Get user input
 
         if (charIsNumber(input) == 0) {          // Check if the provided input is a number
             printf("Please enter a number!\n");  // Print message
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 
         else if (GUESSED_NUMBER == ACTUAL_NUMBER) {  // Check if guessed number is the actual number
             printf("You guessed correctly! :)\n");   // Print message
-            ACTIVE_GAME = 0;                         // Set ACTIVE_GAME to 0 to end the game 
+            ACTIVE_GAME = 0;                         // Set ACTIVE_GAME to 0 to end the game
         }
 
         if (GUESS_COUNTER > MAX_GUESSES) {                 // Check if user has exceeded the maximum number of guesses
@@ -68,19 +68,18 @@ int main(int argc, char *argv[]) {
             ACTIVE_GAME = 0;                               // Set ACTIVE_GAME to 0 to end the game
         }
 
-        if(ACTIVE_GAME == 0){                               // Check if ACTIVE_GAME is 0 (i.e game is over)
+        if (ACTIVE_GAME == 0) {                             // Check if ACTIVE_GAME is 0 (i.e game is over)
             printf("Would you like to play again Y/N \n");  // Print message
             char answer;                                    // Initialize variable to store user answer
             scanf(" %c", &answer);                          // Get user input
-            if(answer == 'Y'){                              // Check if user answers Y
+            if (answer == 'Y') {                            // Check if user answers Y
                 ACTIVE_GAME = 1;                            // Set ACTIVE_GAME to 1 to start a new game
                 GUESS_COUNTER = 1;                          // Reset GUESS_COUNTER
                 ACTUAL_NUMBER = (rand() % 100) + 1;         // Generate a random number between 1 and 100
                 printf("Give us your best guess!\n");       // Print message
                 continue;                                   // Skip the rest of this iteration of the loop (i.e restart)
-            }
-            else {
-                break; // If user doesn't answer Y end the game (break the while loop)
+            } else {
+                break;  // If user doesn't answer Y end the game (break the while loop)
             }
         }
     }
