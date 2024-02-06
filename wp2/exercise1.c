@@ -38,7 +38,7 @@ char* direction_to_string(enum DIRECTION dir);
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 2456372
  **/
 int main(int argc, char* argv[]) {
     ROBOT robot;                             // Initialize robot struct variable.

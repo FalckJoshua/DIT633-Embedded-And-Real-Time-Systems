@@ -40,7 +40,7 @@ void print_file();                       // 4. Prints out all persons in the fil
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 2456372
  **/
 int main() {
     // Variable to store a person temporarily, read from input and passed as parameter to functions

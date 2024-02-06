@@ -31,7 +31,7 @@ char* bit8_to_hex(int binary);
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 2456372
  **/
 int main(int argc, char* argv[]) {
     // Check if sufficient amount of arguments have been passed

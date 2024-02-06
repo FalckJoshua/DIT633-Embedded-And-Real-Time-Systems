@@ -28,7 +28,7 @@ void decode(int packed);
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 2456372
  **/
 int main(int argc, char* argv[]) {
     if (argc != 2) {  // Check if the number of arguments is not 2
