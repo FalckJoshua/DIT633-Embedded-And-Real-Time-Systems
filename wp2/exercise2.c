@@ -4,8 +4,9 @@
 #include <time.h>    // Used for srand(), time(), rand()
 
 // Constants
-#define AMOUNT 5  // Amount of nodes in the list
-#define MAX 100   // Max value of a node
+#define AMOUNT 5            // Amount of nodes in the list
+#define MAX 100             // Max value of a node
+#define ADD_FIRST_VALUE 42  // Value to add to the start of the list
 
 // Struct to hold a node for a linked list
 typedef struct q {
@@ -38,7 +39,7 @@ int main(int argc, char* argv[]) {
     print_list(head);      // Call function to print the list
 
     printf("\nExtending list:\n");
-    head = add_first(head, 42);  // Call function to add a new node to the start of the list
+    head = add_first(head, ADD_FIRST_VALUE);  // Call function to add a new node to the start of the list
     print_list(head);            // Call function to print the list
 
     // Loop to free all nodes (free up memory)
