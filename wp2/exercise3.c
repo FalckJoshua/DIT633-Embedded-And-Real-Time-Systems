@@ -29,7 +29,7 @@ int file_exists();          // Checks if the file exists
 // Menu functions
 void write_new_file(PERSON *in_record);  // 1. Creates a file and writes the first record
 void append_file(PERSON *in_record);     // 2. Appends a new person to the file
-void search_by_first_name(char *name);   // 3. Prints out the person if in list
+void search_by_name();             // 3. Prints out the person if in list
 void print_file();                       // 4. Prints out all persons in the file
 
 /**
@@ -86,11 +86,8 @@ int main() {
                 append_file(&temp_person);
                 break;
 
-            case SEARCH_BY_FIRST_NAME:  // If input is 'SEARCH_BY_FIRST_NAME' (3), call search_by_first_name()
-                printf("Enter first name to search for: ");
-                char name[20];
-                scanf("%19s", name);
-                search_by_first_name(name);
+            case SEARCH_BY_FIRST_NAME:  // If input is 'SEARCH_BY_FIRST_NAME' (3), call search_by_name()
+                search_by_name();
                 break;
 
             case PRINT_FILE:  // If input is 'PRINT_FILE' (4), call print_file()
@@ -167,18 +164,46 @@ void append_file(PERSON *in_record) {
 }
 
 // Function to search for a person in the file
-void search_by_first_name(char *name) {
+void search_by_name() {
     if (!file_exists()) {  // Check if file exists
         return;            // If file does not exist, exit the function
     }
+
+    // Ask the user whether they want to search by first name or last name
+    printf("Enter 1 to search by first name, or 2 to search by last name: ");
+    int choice;
+    char input[100] = {0};  // Input buffer for 'x' position.
+    scanf("%s", input);
+    while (isdigit(*input) == 0 || (atoi(input) != 1 && atoi(input) != 2)) {
+        printf("Invalid input, please enter 1 for first name or 2 for last name: ");
+        scanf("%s", input);
+    }
+    choice = atoi(input);
+
+    printf("Enter name to search for: ");
+    char name[20];
+    scanf("%19s", name);
+
     FILE *file;                                        // Create file pointer
     file = fopen(FILENAME, "rb");                      // Open file for reading
     PERSON person;                                     // Create person struct
     while (fread(&person, sizeof(PERSON), 1, file)) {  // Loop through the file for each person
-        if (strcmp(person.first_name, name) == 0) {    // Compare first name with name
-            print_person(&person);                     // Print person through method call
-            fclose(file);                              // Close file
-            return;                                    // Exit function
+
+        // If the user wants to search by first name (choice == 1) or last name (choice == 2
+        if (choice == 1) {
+            if (strcmp(person.first_name, name) == 0) {  // Compare first name with name
+                print_person(&person);                   // Print person through method call
+                fclose(file);                            // Close file
+                return;                                  // Exit function
+            }
+        }
+
+        else {
+            if (strcmp(person.last_name, name) == 0) {  // Compare first name with name
+                print_person(&person);                  // Print person through method call
+                fclose(file);                           // Close file
+                return;                                 // Exit function
+            }
         }
     }
     printf("No person with that name was found.\n");
