@@ -85,17 +85,18 @@ int read_commands(ROBOT* robot) {
     int i = 0;
     while (input[i] != '\0') {
         switch (input[i]) {
-            case 'm': // if case is m
-                move(robot); // call the move function
-                break; // break out of switch
-            case 't':  // if case is t
-                turn(robot); // call the turn function
-                break; // break out of switch
+            case 'm':         // if case is m
+                move(robot);  // call the move function
+                break;        // break out of switch
+            case 't':         // if case is t
+                turn(robot);  // call the turn function
+                break;        // break out of switch
             case 'q':         // if case is q
                 return 0;     // return 0
         }
         i++;  // Increment i by 1o
     }
+    return 1;  // return 1
 }
 
 // Function to move the robot in the direction it is facing.
