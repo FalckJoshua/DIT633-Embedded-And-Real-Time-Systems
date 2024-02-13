@@ -10,9 +10,9 @@
  **/
 
 // Pin setup
-int led_1 = 12;  // pin 12 for the first LED
-int led_2 = 7;   // pin 7 for the second LED
-int button = 2;  // pin 2 for the button
+int led_1_pin = 12;  // pin 12 for the first LED
+int led_2_pin = 7;   // pin 7 for the second LED
+int button_pin = 2;  // pin 2 for the button
 
 // Variables for time tracking
 unsigned long tracker;  // to track the time
@@ -24,33 +24,38 @@ int button_state;  // stores state of the button, HIGH for pressed, LOW for not 
 
 // Setup pins and variables
 void setup() {
-    pinMode(button, INPUT);  // set the button pin as input
-    pinMode(led_1, OUTPUT);  // set the first LED pin as output
-    pinMode(led_2, OUTPUT);  // set the second LED pin as output
+    pinMode(button_pin, INPUT);  // set the button pin as input
+    pinMode(led_1_pin, OUTPUT);  // set the first LED pin as output
+    pinMode(led_2_pin, OUTPUT);  // set the second LED pin as output
 
     led_1_state = false;  // initialize the state of the first LED
     tracker = millis();   // initialize the tracker
+
+    attachInterrupt(digitalPinToInterrupt(button_pin), on_button_press, CHANGE); // Attach an interrupt to the button pin
 }
 
 void loop() {
     // --- First LED - Blinking ---
-    current = millis();                 // get the current time
-    if (current - tracker >= timer) {   // if the delay has passed:
-        if (led_1_state) {              // if the LED is ON, turn it OFF
-            led_1_state = false;        // update the state of the led to OFF (false)
-            digitalWrite(led_1, LOW);   // turn the LED OFF
-        } else {                        // if the LED is OFF, turn it ON
-            led_1_state = true;         // update the state of the led to ON (true)
-            digitalWrite(led_1, HIGH);  // turn the LED ON
+    current = millis();                     // get the current time
+    if (current - tracker >= timer) {       // if the delay has passed:
+        if (led_1_state) {                  // if the LED is ON, turn it OFF
+            led_1_state = false;            // update the state of the led to OFF (false)
+            digitalWrite(led_1_pin, LOW);   // turn the LED OFF
+        } else {                            // if the LED is OFF, turn it ON
+            led_1_state = true;             // update the state of the led to ON (true)
+            digitalWrite(led_1_pin, HIGH);  // turn the LED ON
         }
         tracker = current;  // update the tracker to the current time
     }
+}
 
+// Function to handle the button press, called whenever the current state of the button changes
+void on_button_press() {
     // --- Second LED - Button Control ---
-    button_state = digitalRead(button);  // read the state of the button
-    if (button_state == HIGH) {          // if the button is pressed
-        digitalWrite(led_2, HIGH);       // turn the LED ON
-    } else {                             // if the button is not pressed
-        digitalWrite(led_2, LOW);        // turn the LED OFF
+    button_state = digitalRead(button_pin);  // read the state of the button
+    if (button_state == HIGH) {              // if the button is pressed
+        digitalWrite(led_2_pin, HIGH);       // turn the LED ON
+    } else {                                 // if the button is not pressed
+        digitalWrite(led_2_pin, LOW);        // turn the LED OFF
     }
 }
