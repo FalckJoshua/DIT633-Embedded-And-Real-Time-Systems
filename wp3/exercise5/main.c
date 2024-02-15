@@ -20,7 +20,7 @@ void print_all(int *arr);         // Function to print all the elements in the a
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 362789
  **/
 
 int main(int argc, char *argv[]) {

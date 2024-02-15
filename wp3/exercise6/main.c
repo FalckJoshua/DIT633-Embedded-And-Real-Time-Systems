@@ -16,7 +16,7 @@ char* copy_String_with_loop(char* string);    // Function to copy the input stri
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 362789
  **/
 int main(int argc, char* argv[]) {
     if (argc > 1) {                              // If there are command-line arguments:
