@@ -4,10 +4,9 @@
 #include <string.h>  // Used for strcpy(), strlen()
 
 // Function declarations
-int exit_and_free(char* input, char* err_message);  // Function to exit the program and free the memory
-void copy_string(char* input, int free_mem);        // Function to copy the input string
-char* copy_String_with_strcpy(char* string);        // Function to copy the input string with strcpy()
-char* copy_String_with_loop(char* string);          // Function to copy the input string with a loop
+void copy_string(char* input, int free_mem);  // Function to copy the input string
+char* copy_String_with_strcpy(char* string);  // Function to copy the input string with strcpy()
+char* copy_String_with_loop(char* string);    // Function to copy the input string with a loop
 
 /**
  * This program
@@ -20,99 +19,84 @@ char* copy_String_with_loop(char* string);          // Function to copy the inpu
  * Submission code: TODO
  **/
 int main(int argc, char* argv[]) {
-    if (argc > 1) {
-        if (strlen(argv[1]) > 20) {
-            printf("The input is too long.\n");
-            return 1;
+    if (argc > 1) {                              // If there are command-line arguments:
+        if (strlen(argv[1]) > 20) {              // Check if the input is too long
+            printf("The input is too long.\n");  // Print an error message
+            return 1;                            // Exit the program
         }
 
-        copy_string(argv[1], 0);
+        copy_string(argv[1], 0);  // Call the copy_string function with the input string and free_mem = 0 (input is not dynamically allocated)
 
     }
 
-    else {
-        char* input = (char*)malloc(20 * sizeof(char));
-        // If there are no command-line arguments, read a line from stdin
-        if (fgets(input, 20, stdin) == NULL) {
-            exit_and_free(input, "Error reading input.\n");
+    else {  // Else, if there are no command-line arguments:
+
+        char* input = (char*)malloc(20 * sizeof(char));  // Allocate memory for the input string
+
+        if (fgets(input, 20, stdin) == NULL) {  // Read input from stdin, allows to use "< myfile.txt" to read from file
+
+            printf("Error reading input.\n");  // Print the error message
+            free(input);                       // Free the memory of the input string
+            return 1;                          // Return 1 to indicate an error
         }
 
-        // After reading from the file...
-        fclose(stdin);
-
-        // Reopen stdin to read from the terminal
-        stdin = fopen("/dev/tty", "r");
-        if (stdin == NULL) {
-            perror("Error reopening stdin");
-            exit(EXIT_FAILURE);
-        }
-
-        copy_string(input, 1);
+        copy_string(input, 1);  // Call the copy_string function with the input string and free_mem = 1 (input is dynamically allocated)
     }
 
-    return 0;
+    return 0;  // Return 0 to indicate successful execution
 }
 
-int exit_and_free(char* input, char* err_message) {
-    printf("%s", err_message);
-    free(input);
-    return 1;
-}
-
+// Function to copy the input string manually
 void copy_string(char* input, int free_mem) {
     printf("Input: %s\n", input);
 
-    printf("Copy with strcpy or loop? (1/2): ");
-    char choice[2];
-    scanf("%s", choice);
-    while (atoi(choice) != 1 && atoi(choice) != 2) {
-        printf("Invalid input. Please enter 1 or 2: ");
-        scanf("%s", choice);
+    char* first_copy;   // Declare a pointer to the first copy
+    char* second_copy;  // Declare a pointer to the second copy
+
+    first_copy = copy_String_with_strcpy(input);  // Assign first_copy to the result of the copy_String_with_strcpy function
+    if (first_copy == NULL) {
+        printf("Error allocating memory for copy.\n");  // Print an error message
+    } else {
+        printf("Copy with strcpy: %s\n", first_copy);  // Print the first copy
     }
 
-    char* copy;
-
-    if (atoi(choice) == 1) {
-        copy = copy_String_with_strcpy(input);
-        if (copy == NULL) {
-            exit_and_free(input, "Error allocating memory for copy.\n");
-        }
-        printf("Copy with strcpy: %s\n", copy);
+    second_copy = copy_String_with_loop(input);  // Assign second_copy to the result of the copy_String_with_loop function
+    if (second_copy == NULL) {
+        printf("Error allocating memory for copy.\n");  // Print an error message
+    } else {
+        printf("Copy with loop: %s\n", second_copy);  // Print the second copy
     }
 
-    else {
-        copy = copy_String_with_loop(input);
-        if (copy == NULL) {
-            exit_and_free(input, "Error allocating memory for copy.\n");
-        }
-        printf("Copy with loop: %s\n", copy);
+    if (free_mem) {   // If the function was called with free_mem = 1 (input is dynamically allocated):
+        free(input);  // Free the memory of the input string
     }
-
-    if (free_mem) {
-        free(input);
-    }
-    free(copy);
+    free(first_copy);   // Free the memory of the first copy
+    free(second_copy);  // Free the memory of the second copy
 }
 
+// Function to copy the input string with strcpy()
 char* copy_String_with_strcpy(char* string) {
-    char* copy = (char*)malloc(strlen(string) * sizeof(char));
-    if (copy == NULL) {
-        return NULL;
+    char* copy = (char*)malloc((strlen(string) + 1) * sizeof(char));  // Allocate memory for the copy
+    if (copy == NULL) {                                               // If the memory allocation failed:
+        return NULL;                                                  // Return NULL, indicating an error
     }
 
-    strcpy(copy, string);
-    return copy;
+    strcpy(copy, string);  // Copy the input string to the copy
+
+    return copy;  // Return the copy
 }
 
 char* copy_String_with_loop(char* string) {
-    char* copy = (char*)malloc(strlen(string) * sizeof(char));
-    if (copy == NULL) {
-        return NULL;
+    char* copy = (char*)malloc((strlen(string) + 1) * sizeof(char));  // Allocate memory for the copy
+    if (copy == NULL) {                                               // If the memory allocation failed:
+        return NULL;                                                  // Return NULL, indicating an error
     }
 
-    for (int i = 0; i < strlen(string); i++) {
-        copy[i] = string[i];
-    }
+    int i;                                  // Declare a variable to use as a counter
+    for (i = 0; i < strlen(string); i++) {  // Loop through the input string
+        copy[i] = string[i];                // Copy each character to the copy
+    }                                       //
+    copy[i] = '\0';                         // Add the null terminator to the end of the copy
 
-    return copy;
+    return copy;  // Return the copy
 }
