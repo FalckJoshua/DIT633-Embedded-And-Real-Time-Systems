@@ -12,7 +12,7 @@
 int temp_pin = A0;  // Pin for temperature sensor
 
 void setup() {
-    Serial.begin(9600);      // Start the serial communication
+    Serial.begin(9600);        // Start the serial communication
     pinMode(temp_pin, INPUT);  // Set the temp_pin as input
 }
 

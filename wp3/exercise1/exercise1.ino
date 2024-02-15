@@ -31,7 +31,7 @@ void setup() {
     led_1_state = false;  // initialize the state of the first LED
     tracker = millis();   // initialize the tracker
 
-    attachInterrupt(digitalPinToInterrupt(button_pin), on_button_press, CHANGE); // Attach an interrupt to the button pin
+    attachInterrupt(digitalPinToInterrupt(button_pin), on_button_press, CHANGE);  // Attach an interrupt to the button pin
 }
 
 void loop() {
