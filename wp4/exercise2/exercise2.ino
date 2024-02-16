@@ -14,19 +14,6 @@
 // Define the pin for the servo
 #define SERVO_PIN A1
 
-// Inspiration taken from course material:
-// https://www.tinkercad.com/things/hqsDje5Qtdv?sharecode=CVIAWPHOUN6TuzFbgOV2ztOiFeXxdcmmXmHZHbqg57o
-//
-// Changes made:
-// - Use timer2 instead of timer1
-//
-// Timer definitions
-#define PRESCALER 1024        // Used for dictating speed of timer according to (timer speed (Hz)) = (Arduino clock speed (16MHz)) / prescaler
-#define INTERRUPT_FREQ 1      // Define interrupt frequency
-#define CLOCK_SPEED 16000000  // Clock speed of the Arduino Uno
-#define TIMER2_MAX 255        // Max counter value for timer0
-#define TIMER2_LOW 0          // Lowest counter value for timer0
-
 // Global variables for timer
 int timer2 = 0;                  // Timer counter
 int iCounter = 0;                // Counter for the number of times the interrupt has been called
@@ -55,12 +42,7 @@ void loop() {
 // Changes made:
 // - Use timer2 instead of timer1
 //
-// Original comment:
-/*
- * This function sets up timer1 on an Arduino Uno
- * Built on top of: https://www.instructables.com/Arduino-Timer-Interrupts/
- * Sets timer1 interrupt at 1Hz = 1 second = 1 cycle per second
- */
+// This function sets up timer 2 to call an interrupt every 16ms
 void setup_timer_2() {
     cli();  // Stop interrupts
 
@@ -81,9 +63,11 @@ ISR(TIMER2_COMPA_vect) {
     cli();                                  // Stop interrupts
     unsigned long current_time = millis();  // Get the current time
 
-    iCounter++;           // Increment the counter
-    if (iCounter < 64) {  // If the counter is less than 64, return (to ensure that the servo is only updated every 64 interrupts, equals ~1024ms at 16MHz clock speed)
-        return;           // This is to ensure that the servo is only updated every 64 interrupts
+    iCounter++;  // Increment the counter
+
+    // ISR gets called once every 16ms, so we need to increment the counter 64 times to get ~1024ms ~= 1 second.
+    if (iCounter < 64) {
+        return;  // This is to ensure that the servo is only updated every 64 interrupts
     }
     iCounter = 0;  // Reset the counter
 
