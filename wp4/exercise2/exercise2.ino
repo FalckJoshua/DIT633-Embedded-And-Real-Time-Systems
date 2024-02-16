@@ -1,7 +1,7 @@
 /**
  * This program increases the position of a servo by 1 degree every second.
  *
- * Work Packages 4: Exercise 1 - ANALOG TIMER
+ * Work Packages 4: Exercise 2 - ANALOG TIMER
  * DIT633 Development of embedded and Real-Time Systems
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
