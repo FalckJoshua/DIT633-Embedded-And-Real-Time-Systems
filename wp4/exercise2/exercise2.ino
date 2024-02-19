@@ -71,7 +71,7 @@ ISR(TIMER2_COMPA_vect) {
     }
     iCounter = 0;  // Reset the counter
 
-    servoPosition = (servoPosition + 1) % 360;  // Increment the servo position by 1 degree (0-180 degrees)
+    servoPosition = (servoPosition + 1) % 180;  // Increment the servo position by 1 degree (0-180 degrees)
 
     servoBase.write(servoPosition);  // Set the servo to the current position
 
