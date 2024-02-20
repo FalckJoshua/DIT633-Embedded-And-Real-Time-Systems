@@ -6,7 +6,7 @@
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 611211
  **/
 
 #include <Adafruit_NeoPixel.h>  // Include the Adafruit_NeoPixel library
