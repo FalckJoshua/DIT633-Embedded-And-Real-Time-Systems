@@ -17,7 +17,7 @@ void selection_sort(int number, int tab[]);          // Function to sort the arr
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: 611211
  **/
 int main(int argc, char* argv[]) {
     int array_size = 10;                                 // Size of the array
