@@ -6,7 +6,7 @@
  *
  * Authors: William Andersson, Joshua Chiu Falck, Adam Faundez Laurokari, 2024
  * Group: 1
- * Submission code: TODO
+ * Submission code: Submission code: 326798
  **/
 
 // Pin setup
