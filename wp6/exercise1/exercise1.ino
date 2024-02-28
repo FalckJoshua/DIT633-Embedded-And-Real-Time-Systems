@@ -25,7 +25,7 @@ int degtarget = 0;  // Target position in degrees
 
 int speed = 0;  // Desired motor speed
 
-int kp = 15;    // Proportional constant for controller (tuning parameter)
+int kp = 5;    // Proportional constant for controller (tuning parameter)
 int u_out = 0;  // output of controller
 
 int e = 0;  // error
@@ -48,15 +48,13 @@ void setup() {
 
     // Start the motor, just a tiny little bit because otherwise TinkerCad dies....
     analogWrite(PWM2, 10);
-    delay(200);  // TinkerCad bug
+    delay(100);
     analogWrite(PWM1, 10);
 }
 
 void loop() {
     // Check if motor rotated all the way around, and reset counter
-    if (pos < -2299 || pos > 2299) {
-        pos = 0;
-    }
+    pos = pos % 2300;
 
     // Reset deg to a modulo of 360
     deg = deg % 360;
@@ -67,7 +65,7 @@ void loop() {
     Serial.print("\n");
 
     // Get input
-    degtarget = getInput() + deg;
+    degtarget = getInput();
 
     // Print target position
     Serial.print("The target position is: ");
@@ -106,12 +104,10 @@ void loop() {
         e = degtarget - deg;
     }
 
-    if (e == 0) {
-        // stop the motor from continously rotating
-        analogWrite(PWM1, 10);
-        delay(200);
-        analogWrite(PWM2, 10);
-    }
+    // stop the motor from continously rotating
+    analogWrite(PWM1, 10);
+    delay(100);
+    analogWrite(PWM2, 10);
 }
 
 // Function to get input from user
