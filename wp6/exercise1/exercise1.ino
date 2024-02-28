@@ -10,11 +10,13 @@
  * Submission code: TODO
  **/
 
+// Pns for the encoders
 #define ENCA 2  // Encoder A
 #define ENCB 3  // Encoder B
 
-#define PWM1 5  // Motor 1,
-#define PWM2 6  // Motor 2, for
+// Pins for the motor
+#define PWM1 5
+#define PWM2 6
 
 int pos = 0;  // Position in ticks
 int deg = 0;  // Position in degrees
@@ -31,13 +33,18 @@ int a = 0;  // a-encoder signal
 int b = 0;  // b-encoder signal
 
 void setup() {
-    Serial.begin(9600);           // Start serial communication
-    pinMode(ENCA, INPUT_PULLUP);  // Set the encoder pins to INPUT_PULLUP
-    pinMode(ENCB, INPUT_PULLUP);  // Set the encoder pins to INPUT_PULLUP
-    pinMode(PWM1, OUTPUT);        // Set the motor pins to OUTPUT
-    pinMode(PWM2, OUTPUT);        // Set the motor pins to OUTPUT
+    Serial.begin(9600);  // Start serial communication
 
-    attachInterrupt(digitalPinToInterrupt(ENCA), ISR_readEncoder, RISING);  // Attach the interrupt to the encoder pin
+    // Set the encoder pins to INPUT_PULLUP
+    pinMode(ENCA, INPUT_PULLUP);  // For the encoder A
+    pinMode(ENCB, INPUT_PULLUP);  // For the encoder B
+
+    // Set the motor pins to OUTPUT
+    pinMode(PWM1, OUTPUT);  // For first motor pin
+    pinMode(PWM2, OUTPUT);  // For second motor pin
+
+    // Attach the interrupt to the encoder pin
+    attachInterrupt(digitalPinToInterrupt(ENCA), ISR_readEncoder, RISING);
 
     // Start the motor, just a tiny little bit because otherwise TinkerCad dies....
     analogWrite(PWM2, 10);
@@ -73,7 +80,7 @@ void loop() {
     // Loop until error is zero
     while (e) {
         // Map current position into degrees
-        deg = map(pos, 0, 2299, 0, 360);
+        deg = map(pos, 0, 2299, 0, 359);
 
         // Get necessary speed signal
         speed = getAction(e);
