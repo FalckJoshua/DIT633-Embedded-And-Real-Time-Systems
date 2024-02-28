@@ -42,9 +42,8 @@ char correct_address[8][8] = {
     "23B393B",
     "9999999"};
 
-char input[8];           // Array to store the input
-int input_index = 0;     // Index for the input array
-int light_up_index = 0;  // Index for the LED strip
+char input[8];        // Array to store the input
+int input_index = 0;  // Index for the input array
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(LED_COUNT, RING_PIN, NEO_GRB + NEO_KHZ800);  // Initialize the LED ring
 
@@ -67,21 +66,15 @@ void loop() {
         Serial.println(key);       // Print the key to the serial monitor
         input[input_index] = key;  // Set the input at the input index to the pressed key
         input_index++;             // Increment the input index
-    }
 
-    for (int i = light_up_index; i < input_index * 2; i += 2) {  // Iterate over the LED pins
-        delay(100);                                              // Delay for 100 milliseconds
-        strip.setPixelColor(i, strip.Color(255, 255, 0));        // Set the color of the LED
-        strip.setPixelColor(i + 1, strip.Color(255, 255, 0));    // Set the color of the LED
-        strip.show();                                            // Show the LED strip
+        strip.setPixelColor(input_index * 2, strip.Color(255, 255, 0));
+        strip.setPixelColor(input_index * 2 - 1, strip.Color(255, 255, 0));
+        strip.show();
     }
-
-    light_up_index = input_index * 2;  // Set the light up index to the input index times 2
 
     if (input_index == 7) {               // If the input index is 7:
         check_address();                  // Call the check_address function
         input_index = 0;                  // Reset the input index to 0
-        light_up_index = 0;               // Reset the light up index to 0
         memset(input, 0, sizeof(input));  // Clear the input array
     }
 }
@@ -187,6 +180,8 @@ void found_wrong_address() {
         strip.show();   // Show the LED strip
         delay(500);     // Delay for 500 milliseconds
     }
+
+    // Cleanup
     strip.clear();  // Clear the LED strip
     strip.show();   // Show the LED strip
 }
@@ -200,21 +195,29 @@ void found_correct_address() {
         delay(100);                                       // Delay for 100 milliseconds
     }
 
+    strip.setBrightness(255);  // Set the brightness to maximum
+
     // Flashing all LEDs
-    for (int j = 0; j < 6; j++) {       // Repeat the flashing 10 times
-        strip.setBrightness(255);       // Set the brightness to maximum
+    for (int j = 0; j < 6; j++) {  // Repeat the flashing 6 times
+
         for (int i = 0; i < 24; i++) {  // Loop through each LED
-            if (j % 2 == 0) {
+
+            // Change color every other loop
+            if (j % 2 == 0) {                                     // If j is even:
                 strip.setPixelColor(i, strip.Color(0, 69, 100));  // Set the color of the LED to a green-blue mix
-            } else {
+            }
+
+            else {                                                 // If j is odd:
                 strip.setPixelColor(i, strip.Color(255, 255, 0));  // Set the color of the LED to yellow
             }
-        }
-        strip.show();  // Show the LED strip
-        delay(500);    // Delay for 500 milliseconds
 
-        strip.clear();  // Turn off all LEDs
-        strip.show();   // Show the LED strip
-        delay(500);     // Delay for 500 milliseconds
+            strip.show();  // Show the LED strip
+        }
+
+        delay(500);  // Delay for 500 milliseconds
     }
+
+    // Cleanup
+    strip.clear();  // Clear the LED strip
+    strip.show();   // Show the LED strip
 }
