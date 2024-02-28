@@ -51,10 +51,8 @@ void loop() {
         pos = 0;
     }
 
-    // If deg is over 359, reduce it to 0-359 depending on the value
-    if (deg > 359) {
-        deg = deg - 360;
-    }
+    // Reset deg to a modulo of 360
+    deg = deg % 360;
 
     // Print current position
     Serial.print("The current position is: ");
